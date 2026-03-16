@@ -1,73 +1,39 @@
 import os
 import sys
-import uuid
 import time
-import platform
-import datetime
 
-# ===== SETTINGS ===== #
+# ===== KEY SYSTEM ===== #
 
-ALLOWED_ID = "128915099043078"
-EXPIRE_DATE = "2026-12-31"
+KEY = "MITHON-123"
 
-modules = ["requests","bs4","mechanize","pyotp"]
+print("\033[1;96m==============================")
+print("        TOOL KEY SYSTEM")
+print("==============================")
 
-# ===== DEVICE ID ===== #
+user_key = input("ENTER KEY : ")
 
-def get_id():
-    return str(uuid.getnode())
-
-device_id = get_id()
-
-# ===== LOCK SYSTEM ===== #
-
-if device_id != ALLOWED_ID:
-    print("\033[1;91m[!] SCRIPT LOCKED")
-    print("\033[1;93mDEVICE ID :", device_id)
-    print("\033[1;92mSEND THIS ID TO ADMIN")
+if user_key != KEY:
+    print("\033[1;91mWRONG KEY!")
     sys.exit()
 
-# ===== EXPIRE CHECK ===== #
-
-today = datetime.date.today()
-exp = datetime.datetime.strptime(EXPIRE_DATE,"%Y-%m-%d").date()
-
-if today > exp:
-    print("\033[1;91m[!] SCRIPT EXPIRED")
-    sys.exit()
-
-# ===== DEVICE CHECK ===== #
-
-bit = platform.architecture()[0]
-
-if bit != "64bit":
-    print("\033[1;91m[!] ONLY 64 BIT DEVICE SUPPORTED")
-    sys.exit()
-
-print("\033[1;92m[✓] DEVICE APPROVED")
+print("\033[1;92mKEY ACCEPTED")
 time.sleep(1)
 
-# ===== AUTO UPDATE ===== #
+# ===== MODULE CHECK ===== #
 
-try:
-    os.system("git pull --quiet")
-except:
-    pass
-
-# ===== MODULE INSTALL ===== #
+modules = ["requests","bs4","mechanize","pyotp"]
 
 for m in modules:
     try:
         __import__(m)
     except:
-        print(f"[+] Installing {m}")
         os.system(f"pip install {m}")
 
 # ===== CLEAR SCREEN ===== #
 
 os.system("clear")
 
-print("\033[1;96m[✓] LOADING MAIN SCRIPT...\n")
+print("\033[1;96mSTARTING MAIN SCRIPT...\n")
 time.sleep(1)
 
 # ===== MAIN SCRIPT ===== #

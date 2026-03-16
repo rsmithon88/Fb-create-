@@ -7,7 +7,7 @@ import datetime
 
 # ===== SETTINGS ===== #
 
-ALLOWED_ID = "PUT_DEVICE_ID_HERE"
+ALLOWED_ID = "128915099043078"
 EXPIRE_DATE = "2026-12-31"
 
 modules = ["requests","bs4","mechanize","pyotp"]
